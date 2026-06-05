@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bidur Subedi - Professional tax, VAT, and audit services in Kathmandu.">
+    <title>Bidur Subedi | Tax & Audit Consultant</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --secondary-color: #3b82f6;
+            --accent-color: #fbbf24;
+            --bg-light: #f8fafc;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+        /* Glassmorphism Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-main) !important;
+            margin: 0 10px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+        }
+        /* Hero Section */
+        .hero-section {
+            padding: 160px 0 100px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-shape {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, rgba(255,255,255,0) 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title span {
+            background: linear-gradient(120deg, var(--secondary-color), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+        .btn-custom {
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .btn-primary-custom {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .btn-primary-custom:hover {
+            background-color: #2563eb;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(59, 130, 246, 0.4);
+        }
+        /* Services Section */
+        .services-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+        .service-card {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 20px;
+            padding: 40px 30px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(180deg, rgba(59,130,246,0.05) 0%, rgba(255,255,255,0) 100%);
+            transition: height 0.4s ease;
+            z-index: -1;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: rgba(59,130,246,0.2);
+        }
+        .service-card:hover::before {
+            height: 100%;
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--secondary-color);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+        }
+        .service-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .service-desc {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+        }
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background-color: var(--bg-light);
+            position: relative;
+        }
+        .about-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .about-img-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #1e293b, #334155);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        .about-content {
+            padding-left: 3rem;
+        }
+        .about-text {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .stats-item {
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 1rem;
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .stats-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, rgba(255,255,255,0) 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+        .contact-title {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .contact-subtitle {
+            color: #cbd5e1;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1ebe57;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4);
+        }
+        /* Footer */
+        .footer {
+            background-color: #020617;
+            padding: 30px 0;
+            color: #94a3b8;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Responsive */
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .about-content {
+                padding-left: 0;
+                margin-top: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100">
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Bidur Subedi<span style="color: var(--secondary-color);">.</span></a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="bi bi-list fs-1 text-dark"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#knowledge">Tax Info</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-custom btn-primary-custom w-100" href="#contact">Consult Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-shape"></div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-7 reveal">
+                    <div class="d-inline-block px-3 py-1 rounded-pill mb-3" style="background-color: rgba(59,130,246,0.1); color: var(--secondary-color); font-weight: 500; font-size: 0.9rem;">
+                        Expert Financial Consultant
+                    </div>
+                    <h1 class="hero-title">Stress-Free <br><span>Tax & Audit</span> Compliance</h1>
+                    <p class="hero-subtitle">Expert VAT filing, income tax clearance, and ward tax solutions for businesses in Kathmandu. We handle the complex paperwork so you can focus entirely on growing your business.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-custom btn-primary-custom text-decoration-none">Free Consultation</a>
+                        <a href="#services" class="btn btn-custom text-decoration-none" style="background: white; color: var(--primary-color); border: 1px solid #e2e8f0;">Our Services</a>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block reveal" style="transition-delay: 0.2s;">
+                    <div class="position-relative">
+                        <!-- Abstract illustration representing finance/growth -->
+                        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.1));">
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="250" cy="250" r="200" fill="rgba(59,130,246,0.05)" />
+                            <path d="M150 350 L250 250 L300 280 L400 150" stroke="url(#grad1)" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="150" cy="350" r="12" fill="var(--accent-color)" />
+                            <circle cx="250" cy="250" r="12" fill="var(--accent-color)" />
+                            <circle cx="300" cy="280" r="12" fill="var(--accent-color)" />
+                            <circle cx="400" cy="150" r="16" fill="var(--secondary-color)" />
+                            <rect x="130" y="370" width="40" height="80" rx="5" fill="rgba(59,130,246,0.2)" />
+                            <rect x="230" y="270" width="40" height="180" rx="5" fill="rgba(59,130,246,0.4)" />
+                            <rect x="280" y="300" width="40" height="150" rx="5" fill="rgba(59,130,246,0.6)" />
+                            <rect x="380" y="170" width="40" height="280" rx="5" fill="url(#grad1)" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="text-center reveal">
+                <h2 class="section-title">Our Core Services</h2>
+                <p class="section-subtitle">Comprehensive financial compliance tailored to Nepal's regulatory standards.</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 reveal" style="transition-delay: 0.1s;">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+                        <h3 class="service-title">VAT Filing</h3>
+                        <p class="service-desc">Expert monthly and periodic VAT filing, ensuring strict adherence to IRD guidelines and zero penalties for your business.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 reveal" style="transition-delay: 0.2s;">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-calculator"></i>
+                        </div>
+                        <h3 class="service-title">Salary TDS</h3>
+                        <p class="service-desc">Comprehensive calculation, filing, and provision of Salary TDS records for both previous and current fiscal years.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 reveal" style="transition-delay: 0.3s;">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h3 class="service-title">Tax Clearance Documents</h3>
+                        <p class="service-desc">Preparation, organization, and compilation of all necessary documentation required for seamless and prompt tax clearance.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 reveal" style="transition-delay: 0.4s;">
+                    <div class="service-card" data-bs-toggle="modal" data-bs-target="#auditModal" style="cursor: pointer;">
+                        <div class="service-icon">
+                            <i class="bi bi-journal-check"></i>
+                        </div>
+                        <h3 class="service-title">Audit Service <i class="bi bi-arrow-right-circle text-primary float-end" style="font-size: 1.2rem; margin-top: -2px;"></i></h3>
+                        <p class="service-desc">Professional and accurate audit services tailored for your business needs. Click to view options.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Tax Knowledge Section -->
+    <section id="knowledge" class="services-section bg-light py-5" style="background-color: var(--bg-light) !important;">
+        <div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+            <div class="text-center reveal">
+                <h2 class="section-title">Tax Knowledge</h2>
+                <p class="section-subtitle">Tax slab for Individual and individual business in Nepal (PIT)</p>
+            </div>
+            
+            <div class="row g-4 mt-2">
+                <!-- Unmarried Individuals -->
+                <div class="col-lg-6 reveal" style="transition-delay: 0.1s;">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius: 15px;">
+                        <div class="card-header bg-white border-0 pt-4 pb-0 text-center">
+                            <h4 class="fw-bold" style="color: var(--primary-color);">Unmarried Individuals</h4>
+                        </div>
+                        <div class="card-body px-4">
+                            <table class="table table-borderless table-hover text-center align-middle mb-0">
+                                <thead style="color: var(--text-muted); border-bottom: 2px solid #f1f5f9;">
+                                    <tr>
+                                        <th class="text-start pb-3">Taxable Income (NPR)</th>
+                                        <th class="pb-3">Tax Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="text-start py-3">Up to 500,000</td><td class="py-3 fw-bold">1% <br><small class="text-muted fw-normal">(Social Security Tax)</small></td></tr>
+                                    <tr><td class="text-start py-3">500,001 to 700,000</td><td class="py-3 fw-bold text-primary">10%</td></tr>
+                                    <tr><td class="text-start py-3">700,001 to 1,000,000</td><td class="py-3 fw-bold text-primary">20%</td></tr>
+                                    <tr><td class="text-start py-3">1,000,001 to 2,000,000</td><td class="py-3 fw-bold text-primary">30%</td></tr>
+                                    <tr><td class="text-start py-3">Above 2,000,000</td><td class="py-3 fw-bold text-danger">36%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Married Couples -->
+                <div class="col-lg-6 reveal" style="transition-delay: 0.2s;">
+                    <div class="card border-0 shadow-sm h-100" style="border-radius: 15px;">
+                        <div class="card-header bg-white border-0 pt-4 pb-0 text-center">
+                            <h4 class="fw-bold" style="color: var(--primary-color);">Married Couples</h4>
+                        </div>
+                        <div class="card-body px-4">
+                            <table class="table table-borderless table-hover text-center align-middle mb-0">
+                                <thead style="color: var(--text-muted); border-bottom: 2px solid #f1f5f9;">
+                                    <tr>
+                                        <th class="text-start pb-3">Taxable Income (NPR)</th>
+                                        <th class="pb-3">Tax Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="text-start py-3">Up to 600,000</td><td class="py-3 fw-bold">1% <br><small class="text-muted fw-normal">(Social Security Tax)</small></td></tr>
+                                    <tr><td class="text-start py-3">600,001 to 800,000</td><td class="py-3 fw-bold text-primary">10%</td></tr>
+                                    <tr><td class="text-start py-3">800,001 to 1,100,000</td><td class="py-3 fw-bold text-primary">20%</td></tr>
+                                    <tr><td class="text-start py-3">1,100,001 to 2,000,000</td><td class="py-3 fw-bold text-primary">30%</td></tr>
+                                    <tr><td class="text-start py-3">Above 2,000,000</td><td class="py-3 fw-bold text-danger">36%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Exemptions & Rebates -->
+            <div class="row mt-5 reveal" style="transition-delay: 0.3s;">
+                <div class="col-12">
+                    <div class="card border-0 shadow-sm" style="border-radius: 15px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white;">
+                        <div class="card-body p-4 p-md-5">
+                            <h4 class="fw-bold mb-4 text-center" style="color: var(--accent-color);">Key Exemptions & Rebates</h4>
+                            <div class="row g-4 mt-2">
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-shield-check fs-1 me-3" style="color: var(--secondary-color);"></i>
+                                        <div>
+                                            <h6 class="fw-bold text-white fs-5">Social Security Fund (SSF)</h6>
+                                            <p class="mb-0 text-light" style="font-size: 0.95rem; opacity: 0.85;">If you contribute to the SSF, the 1% Social Security Tax is generally waived.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-person-hearts fs-1 me-3" style="color: var(--secondary-color);"></i>
+                                        <div>
+                                            <h6 class="fw-bold text-white fs-5">Female Tax Rebate</h6>
+                                            <p class="mb-0 text-light" style="font-size: 0.95rem; opacity: 0.85;">A 10% tax credit is provided on total tax liability for female taxpayers whose only income is remuneration.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="d-flex align-items-start">
+                                        <i class="bi bi-bandaid fs-1 me-3" style="color: var(--secondary-color);"></i>
+                                        <div>
+                                            <h6 class="fw-bold text-white fs-5">Medical Tax Credit</h6>
+                                            <p class="mb-0 text-light" style="font-size: 0.95rem; opacity: 0.85;">Up to NPR 750 or actual approved medical expenses (whichever is lower) can be claimed as a rebate.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 reveal">
+                    <div class="about-image-wrapper">
+                        <div class="about-img-placeholder">
+                            <i class="bi bi-person-workspace text-white-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 reveal" style="transition-delay: 0.2s;">
+                    <div class="about-content">
+                        <h2 class="section-title">About Me</h2>
+                        <h4 class="mb-4 text-primary" style="font-weight: 500;">Bidur Subedi</h4>
+                        <p class="about-text">
+                            With an advanced MBS background in finance and direct experience in professional audit offices, I provide precise, reliable, and highly organized financial consulting.
+                        </p>
+                        <p class="about-text">
+                            Whether you are navigating complex local tax laws, organizing your annual audit, or needing urgent tax clearance, my goal is to provide absolute peace of mind through strict compliance and financial expertise tailored to your specific needs.
+                        </p>
+                        
+                        <div class="row mt-5 g-4">
+                            <div class="col-sm-6">
+                                <div class="stats-item">
+                                    <div class="stats-number">100%</div>
+                                    <div class="stats-label">Compliance Rate</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="stats-item">
+                                    <div class="stats-number">MBS</div>
+                                    <div class="stats-label">Finance Background</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-shape"></div>
+        <div class="container position-relative z-1 reveal">
+            <h2 class="contact-title">Ready to simplify your taxes?</h2>
+            <p class="contact-subtitle">Reach out today for professional advisory and immediate assistance with your filing requirements. Let's make financial compliance the easiest part of your business.</p>
+            
+            <a href="https://wa.me/9770000000000" class="btn btn-custom btn-whatsapp text-decoration-none" target="_blank" rel="noopener noreferrer">
+                <i class="bi bi-whatsapp fs-5"></i>
+                Message on WhatsApp
+            </a>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Bidur Subedi. All rights reserved. Kathmandu, Nepal.</p>
+        </div>
+    </footer>
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS for Animations & Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navbar scroll effect
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.style.padding = '0.5rem 0';
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95) !important';
+                } else {
+                    navbar.style.padding = '1rem 0';
+                    navbar.style.background = 'rgba(255, 255, 255, 0.8) !important';
+                }
+            });
+            // Scroll Reveal Animation
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            function checkReveal() {
+                const windowHeight = window.innerHeight;
+                const revealPoint = 100;
+                
+                revealElements.forEach(element => {
+                    const revealTop = element.getBoundingClientRect().top;
+                    if (revealTop < windowHeight - revealPoint) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkReveal);
+            checkReveal(); // Check on load
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        // Close mobile menu if open
+                        const navbarCollapse = document.getElementById('navbarContent');
+                        if (navbarCollapse.classList.contains('show')) {
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                            bsCollapse.hide();
+                        }
+                        
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Audit Service Modal -->
+    <div class="modal fade" id="auditModal" tabindex="-1" aria-labelledby="auditModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0" style="border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                <div class="modal-header border-0 pb-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold" id="auditModalLabel" style="color: var(--primary-color);">Audit Service Options</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="list-group list-group-flush gap-2">
+                        <a href="#" class="list-group-item list-group-item-action border-0 rounded p-3 d-flex w-100 justify-content-between align-items-center" style="background-color: var(--bg-light); transition: all 0.2s ease;">
+                            <h6 class="mb-0 fw-bold" style="color: var(--primary-color);">1. Day 1 business Service</h6>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action border-0 rounded p-3 d-flex w-100 justify-content-between align-items-center" style="background-color: var(--bg-light); transition: all 0.2s ease;">
+                            <h6 class="mb-0 fw-bold" style="color: var(--primary-color);">2. D2 business under 50 lakh</h6>
+                            <i class="bi bi-chevron-right text-muted"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>>
